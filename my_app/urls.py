@@ -11,4 +11,6 @@ urlpatterns = [
     path('community/posts/', views.post_list, name='post_list'),
     path('contactus/', views.contactus, name='contactus'),
     path('loginregister/', views.loginregister, name='loginregister'),
+    path('signup/', views.signup, name='signup'),
+    path('profile/', views.profile, name='profile'),
 ]

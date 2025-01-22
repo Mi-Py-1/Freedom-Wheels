@@ -15,3 +15,6 @@ class Profile(models.Model):
         # users don’t need to follow anyone.
         blank=True
     )
+    # returns the value of username from the associated instance of the User model
+    def __str__(self):
+        return self.user.username

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Post
 
 def home(request):
     return render(request, 'home.html')
@@ -23,3 +24,7 @@ def contactus(request):
 
 def loginregister(request):
     return render(request, 'loginregister.html')
+
+def post_list(request):
+    posts = Post.objects.all()
+    return render(request, 'post_list.html', {'posts': posts})

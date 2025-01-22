@@ -25,6 +25,14 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content[:20]
+
 @receiver(post_save, sender=User)
 # create new profile upon creating new user
 # def create_profile(sender, instance, created, **kwargs):

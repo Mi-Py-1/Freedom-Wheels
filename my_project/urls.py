@@ -17,8 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from my_app.views import my_my_app
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('my_app/', my_my_app, name='my_app'),
+    path('', views.home, name='home'),
+    path('aboutus/', views.aboutus, name='aboutus'),
+    path('whyclingcanhelp/', views.whyclingcanhelp, name='whyclingcanhelp'),
+    path('servicesavailable/', views.servicesavailable, name='servicesavailable'),
+    path('helpus/', views.helpus, name='helpus'),
+    path('community/', views.community, name='community'),
+    path('contactus/', views.contactus, name='contactus'),
+    path('loginregister/', views.loginregister, name='loginregister'),
 ]

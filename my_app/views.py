@@ -1,8 +1,25 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-# Create your views here.
+def home(request):
+    return render(request, 'home.html')
 
-#test to be deleted
-def my_my_app(request):
-    return HttpResponse("Hello, Freedom Wheels!")
+def aboutus(request):
+    return render(request, 'aboutus.html')
+
+def whyclingcanhelp(request):
+    return render(request, 'whyclingcanhelp.html')
+
+def servicesavailable(request):
+    return render(request, 'servicesavailable.html')
+
+def helpus(request):
+    return render(request, 'helpus.html')
+
+def community(request):
+    return render(request, 'community.html')
+
+def contactus(request):
+    return render(request, 'contactus.html')
+
+def loginregister(request):
+    return render(request, 'loginregister.html')

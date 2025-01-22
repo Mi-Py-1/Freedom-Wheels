@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-txt@d6lk+=4^gq*_9mk=%k+573&9(e#f%zv07p_3sjsa^!wxq!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.herokuapp.com', 'freedomwheels-d9e49f13e9b9.herokuapp.com',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','.herokuapp.com', 'freedomwheels-d9e49f13e9b9.herokuapp.com',]
 
 
 # Application definition
@@ -88,6 +88,11 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

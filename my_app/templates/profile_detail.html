@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ profile.user.username }}'s Profile{% endblock %}
+
+{% block content %}
+<h2>{{ profile.user.username }}'s Profile</h2>
+<div class="card mb-3">
+    <a href="{% url 'profile_detail' profile.user.username %}">
+        {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="{{ profile.user.username }}">
+        {% else %}
+            <img src="{% static 'default-profile.png' %}" class="card-img-top" alt="{{ profile.user.username }}">
+        {% endif %}
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">{{ profile.user.username }}</h5>
+        <p class="card-text">{{ profile.bio }}</p>
+        <p class="card-text"><small class="text-muted">{{ profile.location }}</small></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm, ProfileForm
 from .models import Post, Profile
@@ -56,3 +56,7 @@ def profile_list(request):
     profiles = Profile.objects.all()
     print(profiles)  # Debugging statement
     return render(request, 'profile_list.html', {'profiles': profiles})
+
+def profile_detail(request, username):
+    profile = get_object_or_404(Profile, user__username=username)
+    return render(request, 'profile_detail.html', {'profile': profile})

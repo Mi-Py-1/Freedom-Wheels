@@ -51,3 +51,8 @@ def profile(request):
     else:
         form = ProfileForm(instance=request.user.profile)
     return render(request, 'profile.html', {'form': form})
+
+def profile_list(request):
+    profiles = Profile.objects.all()
+    print(profiles)  # Debugging statement
+    return render(request, 'profile_list.html', {'profiles': profiles})

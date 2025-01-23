@@ -5,7 +5,7 @@ from .models import Profile
 from .models import Post
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=200, help_text='Required')
+    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
 
     class Meta:
         model = User

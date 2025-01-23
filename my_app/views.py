@@ -30,7 +30,10 @@ def loginregister(request):
     return render(request, 'loginregister.html')
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_at')
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(author__profile__in=request.user.profile.follows.all()).order_by('-created_at')
+    else:
+        posts = Post.objects.all().order_by('-created_at')
     return render(request, 'post_list.html', {'posts': posts})
 
 def signup(request):
@@ -74,6 +77,26 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'create_post.html', {'form': form})
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_list')
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'edit_post.html', {'form': form})
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('post_list')
+    return render(request, 'delete_post.html', {'post': post})
 
 @login_required
 def follow_user(request, username):

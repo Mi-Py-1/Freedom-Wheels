@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Welcome to Freedom Wheels</h1>
+        <p>
+            We are a community dedicated to pushing back against the limitations that disabilities enforce on those they affect. Freedom Wheels empowers individuals in the North Lancashire area who experience Parkinson's and/or visual impairments to greater freedom and independence. We revel in the personal stories of our members and the growth and changes they undergo, and our proud of the social media community that is active here. Community is living together, sharing life, and we know that whoever has freedom, shall ride!
+        </p>
+    </div>
+    <div class="text-center mt-4">
+        <img src="{% static 'Hero-image.png.jpeg' %}" alt="Three friends celebrate a great cycling adventure by clinking their drinks together. They are leaning on their bicycles and mobility tricycle" class="img-fluid" role="img" aria-label="Three friends celebrate a great cycling adventure by clinking their drinks together. They are leaning on their bicycles and mobility tricycle">
+    </div>
+    <div class="mt-5">
+        <h2>Join Our Community</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Create a Profile</h3>
+                <p>
+                    Join our supportive network today. By creating a profile, you can connect with fellow cyclists, share experiences, and access resources tailored to your needs.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h3>Request a Tandem Bike</h3>
+                <p>
+                    Ready to hit the road? Request a tandem bike and experience the joy of cycling with a partner. Our team is here to help you get started on your journey.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h3>Donate</h3>
+                <p>
+                    Your generosity makes a difference. Support our mission by donating today. Every contribution helps us provide resources, support, and tandem bikes to those in need.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h2>Quick Links</h2>
+        <ul class="list-unstyled">
+            <li><a href="{% url 'aboutus' %}" aria-label="Learn more about our mission and the team behind Freedom Wheels">About Us: Learn more about our mission and the team behind Freedom Wheels.</a></li>
+            <li><a href="{% url 'whycyclingcanhelp' %}" aria-label="Discover the many benefits of cycling and how it can enhance your life">Why Cycling Can Help: Discover the many benefits of cycling and how it can enhance your life.</a></li>
+            <li><a href="{% url 'servicesavailable' %}" aria-label="Explore the various services we offer to support you on your cycling journey">Services Available: Explore the various services we offer to support you on your cycling journey.</a></li>
+            <li><a href="{% url 'helpus' %}" aria-label="Find out how you can get involved—volunteer, donate, and make a difference">Help Us: Find out how you can get involved—volunteer, donate, and make a difference.</a></li>
+            <li><a href="{% url 'community' %}" aria-label="Connect with other members and join our supportive network">Community: Connect with other members and join our supportive network.</a></li>
+            <li><a href="{% url 'contactus' %}" aria-label="Have questions? Check out our FAQ, safety guidelines, and other contact information">Contact Us: Have questions? Check out our FAQ, safety guidelines, and other contact information.</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

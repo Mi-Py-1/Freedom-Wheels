@@ -8,7 +8,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     # a OneToOneField object called user, representing the profile’s connection to the user. profile gets deleted if user does.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
+    bio = models.TextField(blank=True)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
@@ -26,21 +26,15 @@ class Profile(models.Model):
         return self.user.username
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
     content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.content[:20]
+        return self.title
 
 @receiver(post_save, sender=User)
-# create new profile upon creating new user
-# def create_profile(sender, instance, created, **kwargs):
-#    if created:
-#        user_profile = Profile(user=instance)
-#        user_profile.save()
-#        user_profile.follows.add(instance.profile)
-#        user_profile.save()
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)

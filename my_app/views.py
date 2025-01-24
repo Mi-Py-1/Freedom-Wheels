@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm, ProfileForm, PostForm
 from .models import Post, Profile
 
@@ -21,7 +22,12 @@ def helpus(request):
     return render(request, 'helpus.html')
 
 def community(request):
-    return render(request, 'community.html')
+    if request.user.is_authenticated:
+        posts = Post.objects.all()
+        return render(request, 'community.html', {'posts': posts})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'community.html', {'form': form})
 
 def contactus(request):
     return render(request, 'contactus.html')
@@ -48,15 +54,9 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 @login_required
-def profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=request.user.profile)
-    return render(request, 'profile.html', {'form': form})
+def profile(request, user_id):
+    profile = get_object_or_404(Profile, user_id=user_id)
+    return render(request, 'profile.html', {'profile': profile})
 
 def profile_list(request):
     profiles = Profile.objects.all()
@@ -110,3 +110,8 @@ def unfollow_user(request, username):
     user_to_unfollow = get_object_or_404(User, username=username)
     request.user.profile.follows.remove(user_to_unfollow.profile)
     return redirect('profile_detail', username=username)
+
+@login_required
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'post_detail.html', {'post': post})

@@ -1,13 +1,12 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<h2>Update Profile</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+<div class="container mt-5">
+    <h1>{{ profile.user.username }}'s Profile</h1>
+    <p>{{ profile.bio }}</p>
+    <!-- Add other profile details as needed -->
+</div>
 {% endblock %}

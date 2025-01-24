@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <section aria-labelledby="tandem-bicycle-service">
+        <div class="text-center">
+            <h1 id="tandem-bicycle-service">Tandem Bicycle Service</h1>
+            <h2>How It Works</h2>
+            <ul>
+                <li><strong>Volunteer Pilot Program:</strong> Our tandem bike service pairs users with experienced volunteer pilots who guide and assist during rides. These pilots ensure a safe and enjoyable experience, allowing you to focus on the joy of cycling.</li>
+                <li><strong>On or Off-Road Options:</strong> Whether you prefer the thrill of on-road cycling or the serenity of off-road trails, we offer a variety of ride options to suit your preferences. Explore scenic routes and trails in our beautiful North Lancashire area, tailored to different skill levels and interests.</li>
+                <li><strong>Regular Availability:</strong> Our tandem bike service is available throughout the week, with flexible time slots to accommodate various schedules. We strive to provide as many opportunities as possible for users to enjoy cycling.</li>
+                <li><strong>User-Pilot Matching:</strong> We make every effort to link up users with available pilots to maximize availability. By matching users with pilots, we ensure that you have access to tandem bike rides as often as possible.</li>
+            </ul>
+        </div>
+    </section>
+    <section aria-labelledby="sign-up-get-started" class="mt-5">
+        <div class="text-center">
+            <h2 id="sign-up-get-started">Sign Up and Get Started</h2>
+            <p>
+                Ready to experience the freedom and joy of cycling? Sign up for our tandem bike service using the adjacent sign-up form. Whether you're looking to improve your fitness, enjoy social interactions, or simply savor the outdoors, our program is here to support you.
+            </p>
+        </div>
+    </section>
+    <section aria-labelledby="image1" class="text-center mt-4">
+        <img src="{% static 'servicesavailable1.png' %}" alt="Two people riding a tandem bike on a scenic trail" class="img-fluid">
+    </section>
+    <section aria-labelledby="lancaster-wheels-for-all" class="mt-5">
+        <div class="text-center">
+            <h2 id="lancaster-wheels-for-all">Lancaster Wheels for All</h2>
+            <h3>If You're Not Ready for On-the-Road Cycling Yet</h3>
+            <p>
+                If you're not quite ready for on-the-road cycling, don't worry! You can start with Lancaster Wheels for All. This fantastic service offers a safe and supportive environment for beginners and those who prefer a more controlled setting.
+            </p>
+            <p>
+                Located at Salt Ayre Leisure Centre, Lancaster Wheels for All provides specially adapted cycles and helmets, ensuring everyone can enjoy the benefits of cycling. Sessions are led by experienced staff and volunteers, making it a friendly and inclusive experience for all.
+            </p>
+            <p>
+                For more information and to find out about session times, visit their website: <a href="https://www.lancasterwheelsforall.org" target="_blank" rel="noopener">Lancaster Wheels for All</a>.
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}

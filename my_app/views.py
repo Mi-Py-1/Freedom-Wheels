@@ -12,7 +12,7 @@ def home(request):
 def aboutus(request):
     return render(request, 'aboutus.html')
 
-def whycyclingcanhelp(request):  # Corrected function name
+def whycyclingcanhelp(request):  
     return render(request, 'whycyclingcanhelp.html')
 
 def servicesavailable(request):
@@ -23,9 +23,18 @@ def helpus(request):
 
 def community(request):
     if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+                return redirect('community')
+        else:
+            form = PostForm()
         posts = Post.objects.all()
         profiles = Profile.objects.all()
-        return render(request, 'community.html', {'posts': posts, 'profiles': profiles})
+        return render(request, 'community.html', {'posts': posts, 'profiles': profiles, 'form': form})
     else:
         form = AuthenticationForm()
         return render(request, 'community.html', {'form': form})

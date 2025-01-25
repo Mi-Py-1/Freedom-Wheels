@@ -24,7 +24,7 @@
             <h1>Community Posts</h1>
             <div class="list-group">
                 {% for post in posts %}
-                    <div class="list-group-item list-group-item-action d-flex align-items-start">
+                    <div class="list-group-item list-group-item-action d-flex align-items-start custom-paragraph">
                         <div class="me-3">
                             {% if post.author.profile.profile_image %}
                                 <img src="{{ post.author.profile.profile_image.url }}" class="rounded-circle" alt="{{ post.author.username }}" width="50" height="50">
@@ -46,7 +46,7 @@
                 {% if profiles %}
                     {% for profile in profiles %}
                         <div class="col-md-4">
-                            <div class="card mb-3">
+                            <div class="card mb-3 custom-paragraph">
                                 <a href="{% url 'profile' profile.user.id %}">
                                     {% if profile.profile_image %}
                                         <img src="{{ profile.profile_image.url }}" class="card-img-top" alt="{{ profile.user.username }}">
@@ -76,7 +76,7 @@
                 <h2>{{ user.username }}'s Profile</h2>
                 <a href="{% url 'profile_edit' %}" class="btn btn-secondary">Edit Profile</a>
             </div>
-            <div class="card mb-3">
+            <div class="card mb-3 custom-paragraph">
                 {% if user.profile.profile_image %}
                     <img src="{{ user.profile.profile_image.url }}" class="card-img-top" alt="{{ user.username }}">
                 {% else %}
@@ -92,7 +92,7 @@
             <div class="row">
                 {% for post in user.post_set.all %}
                     <div class="col-md-8 offset-md-2">
-                        <div class="card mb-3">
+                        <div class="card mb-3 custom-paragraph">
                             <div class="card-body">
                                 <p class="card-text">{{ post.content }}</p>
                                 <p class="card-text"><small class="text-muted">{{ post.created_at }}</small></p>

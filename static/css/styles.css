@@ -48,5 +48,20 @@ body {
     color: #000000;
 }
 
+/* Custom styles for paragraphs and modal text */
+.custom-paragraph {
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem; /* Adjust this value to match the tab border radius */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd; /* Optional: Add a light border */
+}
+
+/* Ensure modal text is black */
+.modal-body {
+    color: black;
+}
+
 /* Media Queries */
 

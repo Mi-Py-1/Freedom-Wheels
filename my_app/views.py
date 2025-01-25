@@ -24,7 +24,8 @@ def helpus(request):
 def community(request):
     if request.user.is_authenticated:
         posts = Post.objects.all()
-        return render(request, 'community.html', {'posts': posts})
+        profiles = Profile.objects.all()
+        return render(request, 'community.html', {'posts': posts, 'profiles': profiles})
     else:
         form = AuthenticationForm()
         return render(request, 'community.html', {'form': form})

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
@@ -57,7 +57,28 @@ def signup(request):
 @login_required
 def profile(request, user_id):
     profile = get_object_or_404(Profile, user_id=user_id)
-    return render(request, 'profile.html', {'profile': profile})
+    return render(request, 'profile_detail.html', {'profile': profile})
+
+@login_required
+def profile_edit(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('community')
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'profile_edit.html', {'form': form})
+
+@login_required
+def delete_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        logout(request)
+        return redirect('home')
+    return render(request, 'profile_edit.html')
 
 def profile_list(request):
     profiles = Profile.objects.all()

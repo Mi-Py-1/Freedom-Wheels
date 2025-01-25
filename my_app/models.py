@@ -26,13 +26,12 @@ class Profile(models.Model):
         return self.user.username
 
 class Post(models.Model):
-    title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return self.content[:20]  # Return the first 20 characters of the content
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):

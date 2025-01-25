@@ -23,4 +23,6 @@ urlpatterns = [
     path('posts/', views.post_list, name='post_list'),
     path('profile/<int:user_id>/', views.profile, name='profile'),
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
+    path('profile/edit/', views.profile_edit, name='profile_edit'),
+    path('profile/delete/', views.delete_profile, name='delete_profile'),  # Add this line
 ]

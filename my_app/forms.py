@@ -19,4 +19,19 @@ class ProfileForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['content'] 
+        fields = ['content']
+
+class ContactForm(forms.Form):
+    message = forms.CharField(widget=forms.Textarea, required=True)
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(required=False)
+    phone = forms.CharField(max_length=15, required=False)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        phone = cleaned_data.get('phone')
+        if not email and not phone:
+            raise forms.ValidationError('Either email or phone number must be provided.')
+        return cleaned_data

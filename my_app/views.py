@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import SignUpForm, ProfileForm, PostForm
+from .forms import SignUpForm, ProfileForm, PostForm, ContactForm
 from .models import Post, Profile
 
 def home(request):
@@ -146,3 +147,30 @@ def unfollow_user(request, username):
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     return render(request, 'post_detail.html', {'post': post})
+
+@login_required
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            superuser_email = User.objects.filter(is_superuser=True).first().email
+            send_mail(
+                'Contact Us Message',
+                f'From: {first_name} {last_name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}',
+                email or 'no-reply@example.com',
+                [superuser_email],
+                fail_silently=False,
+            )
+            return redirect('home')
+    else:
+        form = ContactForm(initial={
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'email': request.user.email,
+        })
+    return render(request, 'contactus.html', {'form': form})  # Update the template name here

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-header">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p>We're here to help! Whether you have questions, feedback, or inquiries, feel free to reach out to us.</p>
+                    <form method="post" action="{% url 'contactus' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+                        </div>
+                        <button type="submit" class="btn btn-primary" disabled id="submit-button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const messageField = document.getElementById('message');
+    const submitButton = document.getElementById('submit-button');
+    const emailField = document.getElementById('email');
+    const phoneField = document.getElementById('phone');
+
+    function validateForm() {
+        const message = messageField.value.trim();
+        const email = emailField.value.trim();
+        const phone = phoneField.value.trim();
+        submitButton.disabled = !message || (!email && !phone);
+    }
+
+    messageField.addEventListener('input', validateForm);
+    emailField.addEventListener('input', validateForm);
+    phoneField.addEventListener('input', validateForm);
+});
+</script>
+{% endblock %}

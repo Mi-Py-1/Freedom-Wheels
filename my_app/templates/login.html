@@ -8,9 +8,11 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <img src="{% static 'helpus2.jpg' %}" class="img-fluid mb-4" alt="Help Us">
+            <div class="form-header">
+                <h2>Login</h2>
+            </div>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title">Login</h2>
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="mb-3">
@@ -25,6 +27,9 @@
                     </form>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
                 </div>
+            </div>
+            <div class="form-header">
+                <h2>Register Here</h2>
             </div>
             <div class="card">
                 <div class="card-body">

@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         loginButton.disabled = !username || !password;
     }
 
-    usernameField.addEventListener('input', validateForm);
-    passwordField.addEventListener('input', validateForm);
+    if (usernameField && passwordField && loginButton) {
+        usernameField.addEventListener('input', validateForm);
+        passwordField.addEventListener('input', validateForm);
+    }
 });

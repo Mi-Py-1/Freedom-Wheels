@@ -173,4 +173,18 @@ def contact_us(request):
             'last_name': request.user.last_name,
             'email': request.user.email,
         })
-    return render(request, 'contactus.html', {'form': form})  # Update the template name here
+    return render(request, 'contactus.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('profile_edit')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})

@@ -10,7 +10,7 @@ urlpatterns = [
     path('community/', views.community, name='community'),
     path('community/posts/', views.post_list, name='post_list'),
     path('contactus/', views.contactus, name='contactus'),
-    path('loginregister/', views.loginregister, name='loginregister'),
+    path('login/', views.login_view, name='login'),
     path('signup/', views.signup, name='signup'),
     path('profile/', views.profile, name='profile'),
     path('profiles/', views.profile_list, name='profile_list'),
@@ -24,5 +24,5 @@ urlpatterns = [
     path('profile/<int:user_id>/', views.profile, name='profile'),
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
-    path('profile/delete/', views.delete_profile, name='delete_profile'),  # Add this line
+    path('profile/delete/', views.delete_profile, name='delete_profile'),
 ]

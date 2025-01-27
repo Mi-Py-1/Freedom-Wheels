@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
     path('profile/delete/', views.delete_profile, name='delete_profile'),
+    path('password_reset/', include('django.contrib.auth.urls')),
 ]

@@ -19,4 +19,11 @@ class ProfileForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['content'] 
+        fields = ['content']
+
+class ContactForm(forms.Form):
+    message = forms.CharField(widget=forms.Textarea, required=True)
+    first_name = forms.CharField(max_length=100, required=True)
+    last_name = forms.CharField(max_length=100, required=True)
+    email = forms.EmailField(required=True)
+    phone = forms.CharField(max_length=15, required=False)

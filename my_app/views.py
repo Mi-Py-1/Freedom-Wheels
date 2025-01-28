@@ -144,3 +144,7 @@ def delete_post(request, post_id):
         post.delete()
         return redirect('post_list')
     return render(request, 'delete_post_confirm.html', {'post': post})
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'post_detail.html', {'post': post})

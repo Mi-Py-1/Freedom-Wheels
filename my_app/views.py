@@ -148,3 +148,6 @@ def delete_post(request, post_id):
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     return render(request, 'post_detail.html', {'post': post})
+
+def faq(request):
+    return render(request, 'faq.html')

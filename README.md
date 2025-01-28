@@ -1,6 +1,9 @@
 This project is unfortunately unfinished. Apologies for this and I will work on it before the next deadline.
 
 
+Project built from combination of django blog project and following guide: https://realpython.com/django-social-network-1/ I have adapted these to my own needs.
+
+
 
 
 

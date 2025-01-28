@@ -1,3 +1,30 @@
+This project is unfortunately unfinished. Apologies for this and I will work on it before the next deadline.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome Michael Pymer,

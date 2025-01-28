@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import ProfileForm, PostForm, ContactForm
+from .models import Profile, Post
+from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import SignUpForm, ProfileForm, PostForm
-from .models import Post, Profile
 
 def home(request):
     return render(request, 'home.html')
@@ -12,7 +12,7 @@ def home(request):
 def aboutus(request):
     return render(request, 'aboutus.html')
 
-def whycyclingcanhelp(request):  
+def whycyclingcanhelp(request):
     return render(request, 'whycyclingcanhelp.html')
 
 def servicesavailable(request):
@@ -22,82 +22,99 @@ def helpus(request):
     return render(request, 'helpus.html')
 
 def community(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = PostForm(request.POST)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.author = request.user
-                post.save()
-                return redirect('community')
-        else:
-            form = PostForm()
-        posts = Post.objects.all()
-        profiles = Profile.objects.all()
-        return render(request, 'community.html', {'posts': posts, 'profiles': profiles, 'form': form})
-    else:
-        form = AuthenticationForm()
-        return render(request, 'community.html', {'form': form})
-
-def contactus(request):
-    return render(request, 'contactus.html')
-
-def loginregister(request):
-    return render(request, 'loginregister.html')
+    profiles = Profile.objects.all()
+    posts = Post.objects.all()
+    return render(request, 'community.html', {'profiles': profiles, 'posts': posts})
 
 def post_list(request):
-    if request.user.is_authenticated:
-        posts = Post.objects.filter(author__profile__in=request.user.profile.follows.all()).order_by('-created_at')
-    else:
-        posts = Post.objects.all().order_by('-created_at')
+    posts = Post.objects.all()
     return render(request, 'post_list.html', {'posts': posts})
+
+def contactus(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+
+            # Get the superuser email
+            superuser_email = User.objects.filter(is_superuser=True).first().email
+
+            # Send email to superuser
+            send_mail(
+                subject=f"Contact Us Message from {first_name} {last_name}",
+                message=f"Message: {message}\n\nFirst Name: {first_name}\nLast Name: {last_name}\nEmail: {email}\nPhone: {phone}",
+                from_email=email,
+                recipient_list=[superuser_email],
+            )
+
+            # Redirect to the same page with a success flag
+            return redirect(f'{request.path}?success=true')
+    else:
+        form = ContactForm()
+    return render(request, 'contactus.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
 
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('profile_edit')
     else:
-        form = SignUpForm()
+        form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
-@login_required
 def profile(request, user_id):
-    profile = get_object_or_404(Profile, user_id=user_id)
-    return render(request, 'profile_detail.html', {'profile': profile})
-
-@login_required
-def profile_edit(request):
-    profile = get_object_or_404(Profile, user=request.user)
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('community')
-    else:
-        form = ProfileForm(instance=profile)
-    return render(request, 'profile_edit.html', {'form': form})
-
-@login_required
-def delete_profile(request):
-    if request.method == 'POST':
-        user = request.user
-        user.delete()
-        logout(request)
-        return redirect('home')
-    return render(request, 'profile_edit.html')
+    user_profile = get_object_or_404(Profile, user_id=user_id)
+    return render(request, 'profile.html', {'profile': user_profile})
 
 def profile_list(request):
     profiles = Profile.objects.all()
     return render(request, 'profile_list.html', {'profiles': profiles})
 
 def profile_detail(request, username):
-    profile = get_object_or_404(Profile, user__username=username)
-    return render(request, 'profile_detail.html', {'profile': profile})
+    user_profile = get_object_or_404(Profile, user__username=username)
+    return render(request, 'profile_detail.html', {'profile': user_profile})
 
-@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('community')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile_edit.html', {'form': form})
+
+def delete_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        logout(request)
+        user.delete()
+        return redirect('account_deleted')
+    return render(request, 'profile_delete_confirm.html')
+
+def account_deleted(request):
+    return render(request, 'account_deleted.html')
+
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -110,39 +127,20 @@ def create_post(request):
         form = PostForm()
     return render(request, 'create_post.html', {'form': form})
 
-@login_required
 def edit_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id, author=request.user)
+    post = get_object_or_404(Post, id=post_id)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('post_list')
+            return redirect('post_detail', post_id=post.id)
     else:
         form = PostForm(instance=post)
     return render(request, 'edit_post.html', {'form': form})
 
-@login_required
 def delete_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id, author=request.user)
+    post = get_object_or_404(Post, id=post_id)
     if request.method == 'POST':
         post.delete()
         return redirect('post_list')
-    return render(request, 'delete_post.html', {'post': post})
-
-@login_required
-def follow_user(request, username):
-    user_to_follow = get_object_or_404(User, username=username)
-    request.user.profile.follows.add(user_to_follow.profile)
-    return redirect('profile_detail', username=username)
-
-@login_required
-def unfollow_user(request, username):
-    user_to_unfollow = get_object_or_404(User, username=username)
-    request.user.profile.follows.remove(user_to_unfollow.profile)
-    return redirect('profile_detail', username=username)
-
-@login_required
-def post_detail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    return render(request, 'post_detail.html', {'post': post})
+    return render(request, 'delete_post_confirm.html', {'post': post})

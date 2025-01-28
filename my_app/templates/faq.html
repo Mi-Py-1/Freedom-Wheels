@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-header">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+            </div>
+            <div class="accordion mb-4" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                            What should I wear for a tandem bike ride?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            It's best to wear comfortable, weather-appropriate clothing and closed-toe shoes. Wearing a helmet is mandatory for safety reasons, and we recommend bringing water and sun protection, like sunscreen and sunglasses, for outdoor rides.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                            Can I participate if I have never cycled before?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Absolutely! Our tandem bike program is designed to accommodate all skill levels, including beginners. Our volunteer pilots will provide the necessary guidance and support to ensure a safe and enjoyable experience.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                            How are volunteer pilots trained?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            All volunteer pilots undergo comprehensive training that covers tandem cycling techniques, safety protocols, and best practices for guiding visually impaired or disabled individuals. This ensures they are well-prepared to support our users.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                            What happens if the weather is bad on the day of my ride?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            In the event of inclement weather, we prioritize safety and may reschedule your ride. We'll keep you informed and work to find a suitable alternative time that works for you and your pilot.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                            How can I provide feedback about my experience?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            We welcome and value your feedback. You can share your thoughts and suggestions through the "Contact Us" form on our website or share your experiences on our or other social media. Your insights help us improve and enhance our services.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading6">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                            Are there any costs associated with participating in the tandem bike program?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our tandem bike program is provided free of charge to ensure accessibility for all individuals. However, donations are always appreciated to help us maintain and expand our services.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
+                            Can family members or friends join the rides?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, family members or friends are welcome to join and support you during rides, provided they follow our safety guidelines and protocols. If they want to become a tandem pilot they will need to sign up to volunteer with us.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading8">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                            How do you ensure the safety of participants during rides?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Safety is our top priority. We provide training for volunteer pilots, require helmets, and follow strict safety protocols for all rides. Additionally, we regularly maintain our bikes to ensure they are in excellent condition.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading9">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse9" aria-expanded="false" aria-controls="faqCollapse9">
+                            Can I bring my own tandem bike if I have one?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse9" class="accordion-collapse collapse" aria-labelledby="faqHeading9" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, you are welcome to bring your own tandem bike. Please inform us in advance so we can coordinate with your volunteer pilot and ensure a smooth experience. We will need to do a safety inspection before it can be used on the day so be prepared for this 5 /10 minute need at the start.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqHeading10">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse10" aria-expanded="false" aria-controls="faqCollapse10">
+                            How do I stay updated on the latest news and events from Freedom Wheels?
+                        </button>
+                    </h2>
+                    <div id="faqCollapse10" class="accordion-collapse collapse" aria-labelledby="faqHeading10" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            You can subscribe to our newsletter and follow us on social media to receive regular updates on events, news, and opportunities to get involved with Freedom Wheels.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-header">
+                <h2>Safe Cycling Practices</h2>
+            </div>
+            <div class="accordion mb-4" id="safetyAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse1" aria-expanded="true" aria-controls="safetyCollapse1">
+                            Wear Proper Safety Gear
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse1" class="accordion-collapse collapse show" aria-labelledby="safetyHeading1" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Helmet:</strong> Always wear a helmet that fits snugly and is properly fastened. It can significantly reduce the risk of head injury in case of an accident.</li>
+                                <li><strong>Reflective Clothing:</strong> Wear bright and reflective clothing, especially when cycling in low-light conditions, to make yourself visible to other road users.</li>
+                                <li><strong>Gloves and Eye Protection:</strong> Use gloves for better grip and to protect your hands, and wear eye protection to shield your eyes from dust, debris, and insects.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse2" aria-expanded="false" aria-controls="safetyCollapse2">
+                            Perform Pre-Ride Checks
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse2" class="accordion-collapse collapse" aria-labelledby="safetyHeading2" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Bike Inspection:</strong> Check your bike before each ride. Ensure the tires are properly inflated, brakes are working, and the chain is lubricated.</li>
+                                <li><strong>Lights and Reflectors:</strong> Make sure your bike is equipped with front and rear lights, as well as reflectors, to enhance visibility.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse3" aria-expanded="false" aria-controls="safetyCollapse3">
+                            Follow Traffic Rules
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse3" class="accordion-collapse collapse" aria-labelledby="safetyHeading3" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Obey Traffic Signals:</strong> Follow all traffic signals and signs, and ride in the same direction as traffic.</li>
+                                <li><strong>Use Hand Signals:</strong> Communicate your intentions to other road users by using hand signals when turning or stopping.</li>
+                                <li><strong>Stay in Your Lane:</strong> Stick to designated bike lanes or paths whenever possible. If riding on the road, stay as far to the right as practical.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse4" aria-expanded="false" aria-controls="safetyCollapse4">
+                            Stay Alert and Aware
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse4" class="accordion-collapse collapse" aria-labelledby="safetyHeading4" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Avoid Distractions:</strong> Don't use headphones or mobile devices while cycling. Keep your focus on the road and your surroundings.</li>
+                                <li><strong>Watch for Hazards:</strong> Be vigilant for potholes, debris, and other road hazards that could cause you to lose control of your bike.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse5" aria-expanded="false" aria-controls="safetyCollapse5">
+                            Maintain a Safe Distance
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse5" class="accordion-collapse collapse" aria-labelledby="safetyHeading5" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Keep Your Distance:</strong> Maintain a safe distance from other cyclists, vehicles, and pedestrians. This gives you enough time to react to any sudden movements.</li>
+                                <li><strong>Be Cautious at Intersections:</strong> Slow down and be extra cautious at intersections and pedestrian crossings. Make eye contact with drivers to ensure they see you.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading6">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse6" aria-expanded="false" aria-controls="safetyCollapse6">
+                            Ride Defensively
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse6" class="accordion-collapse collapse" aria-labelledby="safetyHeading6" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Anticipate Actions:</strong> Anticipate the actions of other road users and be prepared to react. Assume that drivers and pedestrians may not always see you.</li>
+                                <li><strong>Avoid Blind Spots:</strong> Stay out of the blind spots of larger vehicles, such as trucks and buses.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse7" aria-expanded="false" aria-controls="safetyCollapse7">
+                            Know Your Limits
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse7" class="accordion-collapse collapse" aria-labelledby="safetyHeading7" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Stay Within Your Abilities:</strong> Don't push yourself beyond your physical limits. If you're tired or feeling unwell, take a break or cut your ride short.</li>
+                                <li><strong>Plan Your Route:</strong> Choose routes that match your skill level and avoid roads with heavy traffic or difficult terrain if you're not confident.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading8">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse8" aria-expanded="false" aria-controls="safetyCollapse8">
+                            Ride Predictably
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse8" class="accordion-collapse collapse" aria-labelledby="safetyHeading8" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Stable and Consistent:</strong> Ride in a straight line and avoid sudden swerves or unpredictable movements. This helps other road users anticipate your actions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading9">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse9" aria-expanded="false" aria-controls="safetyCollapse9">
+                            Stay Hydrated and Energized
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse9" class="accordion-collapse collapse" aria-labelledby="safetyHeading9" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Carry Water:</strong> Bring a water bottle and stay hydrated, especially on long rides.</li>
+                                <li><strong>Snack Smart:</strong> Carry light snacks to keep your energy levels up during extended rides.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="safetyHeading10">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safetyCollapse10" aria-expanded="false" aria-controls="safetyCollapse10">
+                            Educate Yourself
+                        </button>
+                    </h2>
+                    <div id="safetyCollapse10" class="accordion-collapse collapse" aria-labelledby="safetyHeading10" data-bs-parent="#safetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Cycling Courses:</strong> Consider taking a cycling safety course to learn more about safe riding practices and improve your skills.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

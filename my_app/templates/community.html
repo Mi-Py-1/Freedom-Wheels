@@ -44,6 +44,7 @@
                         <div>
                             <p class="mb-1">{{ post.content|truncatewords:30 }}</p>
                             <small>Posted by {{ post.author.username }} on {{ post.created_at }}</small>
+                            <small class="text-muted">Last updated on {{ post.updated_at }}</small>
                         </div>
                     </div>
                 {% endfor %}

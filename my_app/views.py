@@ -22,9 +22,18 @@ def helpus(request):
     return render(request, 'helpus.html')
 
 def community(request):
-    profiles = Profile.objects.all()
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            # If you want to assign a default author, you can do so here
+            # post.author = User.objects.get(username='default_author')
+            post.save()
+            return redirect('community')
+    else:
+        form = PostForm()
     posts = Post.objects.all()
-    return render(request, 'community.html', {'profiles': profiles, 'posts': posts})
+    return render(request, 'community.html', {'form': form, 'posts': posts})
 
 def post_list(request):
     posts = Post.objects.all()
@@ -120,7 +129,6 @@ def create_post(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
             post.save()
             return redirect('post_list')
     else:
